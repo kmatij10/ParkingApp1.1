@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Protests.Data.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Protests.Data.Database
 {
@@ -15,6 +13,7 @@ namespace Protests.Data.Database
         public DbSet<Protest> Protests { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Organizer> Organizers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +30,20 @@ namespace Protests.Data.Database
                 }
             );
 
+            modelBuilder.Entity<Organizer>().HasData(
+                new Organizer
+                {
+                    Id = 1,
+                    Name = "David"
+                    
+                },
+                new Organizer
+                {
+                    Id = 2,
+                    Name = "SDP"
+                }
+            );
+
             modelBuilder.Entity<Protest>().HasData(
                 new Protest
                 {
@@ -38,7 +51,8 @@ namespace Protests.Data.Database
                     Title = "Title 1",
                     Description = "Description 1",
                     StartsAt = DateTime.Now.AddDays(5),
-                    CityId = 1
+                    CityId = 1,
+                    OrganizerId = 1
                 },
                 new Protest
                 {
@@ -46,7 +60,8 @@ namespace Protests.Data.Database
                     Title = "David predvodi u Širokom prosvjed",
                     Description = "Description 2",
                     StartsAt = DateTime.Now.AddDays(15),
-                    CityId = 2
+                    CityId = 2,
+                    OrganizerId = 2
                 }
             );
 

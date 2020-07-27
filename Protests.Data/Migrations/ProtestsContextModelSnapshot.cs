@@ -41,13 +41,13 @@ namespace Protests.Data.Migrations
                         {
                             Id = 1L,
                             CityName = "Zagreb",
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 384, DateTimeKind.Local).AddTicks(7420)
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 43, DateTimeKind.Local).AddTicks(5250)
                         },
                         new
                         {
                             Id = 2L,
                             CityName = "Široki",
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 394, DateTimeKind.Local).AddTicks(4860)
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 54, DateTimeKind.Local).AddTicks(5210)
                         });
                 });
 
@@ -80,22 +80,60 @@ namespace Protests.Data.Migrations
                         {
                             Id = 1L,
                             CommentText = "Comment 1",
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(4110),
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(8960),
                             ProtestId = 1L
                         },
                         new
                         {
                             Id = 2L,
                             CommentText = "Comment 1",
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(5060),
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(9890),
                             ProtestId = 1L
                         },
                         new
                         {
                             Id = 3L,
                             CommentText = "Comment 1",
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(5090),
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(9920),
                             ProtestId = 2L
+                        });
+                });
+
+            modelBuilder.Entity("Protests.Data.Entities.Organizer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Organizers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(2680),
+                            Name = "David"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(3540),
+                            Name = "SDP"
                         });
                 });
 
@@ -117,6 +155,9 @@ namespace Protests.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasMaxLength(10000);
 
+                    b.Property<long>("OrganizerId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("StartsAt")
                         .HasColumnType("datetime2");
 
@@ -129,6 +170,8 @@ namespace Protests.Data.Migrations
 
                     b.HasIndex("CityId");
 
+                    b.HasIndex("OrganizerId");
+
                     b.ToTable("Protests");
 
                     b.HasData(
@@ -136,18 +179,20 @@ namespace Protests.Data.Migrations
                         {
                             Id = 1L,
                             CityId = 1L,
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(100),
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(5090),
                             Description = "Description 1",
-                            StartsAt = new DateTime(2020, 8, 1, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(1540),
+                            OrganizerId = 1L,
+                            StartsAt = new DateTime(2020, 8, 1, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(6070),
                             Title = "Title 1"
                         },
                         new
                         {
                             Id = 2L,
                             CityId = 2L,
-                            CreatedAt = new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(2610),
+                            CreatedAt = new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(7520),
                             Description = "Description 2",
-                            StartsAt = new DateTime(2020, 8, 11, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(2640),
+                            OrganizerId = 2L,
+                            StartsAt = new DateTime(2020, 8, 11, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(7560),
                             Title = "David predvodi u Širokom prosvjed"
                         });
                 });
@@ -164,8 +209,14 @@ namespace Protests.Data.Migrations
             modelBuilder.Entity("Protests.Data.Entities.Protest", b =>
                 {
                     b.HasOne("Protests.Data.Entities.City", "City")
-                        .WithMany()
+                        .WithMany("Protests")
                         .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Protests.Data.Entities.Organizer", "Organizer")
+                        .WithMany("Protests")
+                        .HasForeignKey("OrganizerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -33,6 +33,7 @@ namespace Protests.Core.Repositories.Protests
         {
             var query = this.context.Protests.AsQueryable();
             query = query.Include(p => p.City); // INNER JOIN
+            query = query.Include(p => p.Organizer); // INNER JOIN
             if (!string.IsNullOrEmpty(search))
             {
                 /* simple search */

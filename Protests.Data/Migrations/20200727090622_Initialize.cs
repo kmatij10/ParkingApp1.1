@@ -22,6 +22,21 @@ namespace Protests.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Organizers",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organizers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Protests",
                 columns: table => new
                 {
@@ -31,7 +46,8 @@ namespace Protests.Data.Migrations
                     Title = table.Column<string>(maxLength: 256, nullable: false),
                     Description = table.Column<string>(maxLength: 10000, nullable: false),
                     StartsAt = table.Column<DateTime>(nullable: false),
-                    CityId = table.Column<long>(nullable: false)
+                    CityId = table.Column<long>(nullable: false),
+                    OrganizerId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,6 +56,12 @@ namespace Protests.Data.Migrations
                         name: "FK_Protests_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Protests_Organizers_OrganizerId",
+                        column: x => x.OrganizerId,
+                        principalTable: "Organizers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -68,37 +90,45 @@ namespace Protests.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Cities",
                 columns: new[] { "Id", "CityName", "CreatedAt" },
-                values: new object[] { 1L, "Zagreb", new DateTime(2020, 7, 27, 9, 58, 2, 384, DateTimeKind.Local).AddTicks(7420) });
+                values: new object[,]
+                {
+                    { 1L, "Zagreb", new DateTime(2020, 7, 27, 11, 6, 22, 43, DateTimeKind.Local).AddTicks(5250) },
+                    { 2L, "Široki", new DateTime(2020, 7, 27, 11, 6, 22, 54, DateTimeKind.Local).AddTicks(5210) }
+                });
 
             migrationBuilder.InsertData(
-                table: "Cities",
-                columns: new[] { "Id", "CityName", "CreatedAt" },
-                values: new object[] { 2L, "Široki", new DateTime(2020, 7, 27, 9, 58, 2, 394, DateTimeKind.Local).AddTicks(4860) });
+                table: "Organizers",
+                columns: new[] { "Id", "CreatedAt", "Name", "Phone" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(2680), "David", null },
+                    { 2L, new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(3540), "SDP", null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Protests",
-                columns: new[] { "Id", "CityId", "CreatedAt", "Description", "StartsAt", "Title" },
-                values: new object[] { 1L, 1L, new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(100), "Description 1", new DateTime(2020, 8, 1, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(1540), "Title 1" });
+                columns: new[] { "Id", "CityId", "CreatedAt", "Description", "OrganizerId", "StartsAt", "Title" },
+                values: new object[] { 1L, 1L, new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(5090), "Description 1", 1L, new DateTime(2020, 8, 1, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(6070), "Title 1" });
 
             migrationBuilder.InsertData(
                 table: "Protests",
-                columns: new[] { "Id", "CityId", "CreatedAt", "Description", "StartsAt", "Title" },
-                values: new object[] { 2L, 2L, new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(2610), "Description 2", new DateTime(2020, 8, 11, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(2640), "David predvodi u Širokom prosvjed" });
+                columns: new[] { "Id", "CityId", "CreatedAt", "Description", "OrganizerId", "StartsAt", "Title" },
+                values: new object[] { 2L, 2L, new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(7520), "Description 2", 2L, new DateTime(2020, 8, 11, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(7560), "David predvodi u Širokom prosvjed" });
 
             migrationBuilder.InsertData(
                 table: "Comments",
                 columns: new[] { "Id", "CommentText", "CreatedAt", "ProtestId" },
-                values: new object[] { 1L, "Comment 1", new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(4110), 1L });
+                values: new object[] { 1L, "Comment 1", new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(8960), 1L });
 
             migrationBuilder.InsertData(
                 table: "Comments",
                 columns: new[] { "Id", "CommentText", "CreatedAt", "ProtestId" },
-                values: new object[] { 2L, "Comment 1", new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(5060), 1L });
+                values: new object[] { 2L, "Comment 1", new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(9890), 1L });
 
             migrationBuilder.InsertData(
                 table: "Comments",
                 columns: new[] { "Id", "CommentText", "CreatedAt", "ProtestId" },
-                values: new object[] { 3L, "Comment 1", new DateTime(2020, 7, 27, 9, 58, 2, 396, DateTimeKind.Local).AddTicks(5090), 2L });
+                values: new object[] { 3L, "Comment 1", new DateTime(2020, 7, 27, 11, 6, 22, 56, DateTimeKind.Local).AddTicks(9920), 2L });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ProtestId",
@@ -109,6 +139,11 @@ namespace Protests.Data.Migrations
                 name: "IX_Protests_CityId",
                 table: "Protests",
                 column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Protests_OrganizerId",
+                table: "Protests",
+                column: "OrganizerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -121,6 +156,9 @@ namespace Protests.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "Organizers");
         }
     }
 }

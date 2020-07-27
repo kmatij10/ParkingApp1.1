@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Protests.Core.Repositories.Cities;
 using Protests.Core.Repositories.Comments;
+using Protests.Core.Repositories.Organizers;
 using Protests.Core.Repositories.Protests;
 
 namespace Protests.Api.Extensions
@@ -12,6 +13,7 @@ namespace Protests.Api.Extensions
             services.AddScoped<IProtestRepository, ProtestRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IOrganizerRepository, OrganizerRepository>();
         }
     }
 }
