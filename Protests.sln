@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fights.Api", "Fights.Api\Fights.Api.csproj", "{4259AB68-BCF1-45FB-A553-283EA1BDC8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.Api", "Parking.Api\Parking.Api.csproj", "{4259AB68-BCF1-45FB-A553-283EA1BDC8E7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4CD65119-38E0-4956-A7C2-0EB96D872EB2} = {4CD65119-38E0-4956-A7C2-0EB96D872EB2}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fights.Core", "Fights.Core\Fights.Core.csproj", "{64458371-620C-4B43-B046-84A05E3226F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.Core", "Parking.Core\Parking.Core.csproj", "{64458371-620C-4B43-B046-84A05E3226F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fights.Data", "Fights.Data\Fights.Data.csproj", "{4CD65119-38E0-4956-A7C2-0EB96D872EB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Data", "Parking.Data\Parking.Data.csproj", "{4CD65119-38E0-4956-A7C2-0EB96D872EB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
