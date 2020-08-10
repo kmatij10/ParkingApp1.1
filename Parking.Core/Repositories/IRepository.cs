@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Parking.Core.Repositories
 {
@@ -14,6 +15,5 @@ namespace Parking.Core.Repositories
 
         T Create(T entity);
 
-        T Update(long id, T entity);
     }
 }

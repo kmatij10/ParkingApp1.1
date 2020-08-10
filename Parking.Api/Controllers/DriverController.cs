@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Parking.Core.Repositories.Drivers;
+using Parking.Core.Repositories;
 using Parking.Data.Entities;
 
 namespace Parking.Api.Controllers
@@ -43,10 +44,11 @@ namespace Parking.Api.Controllers
             return this.mapper.Map<Driver>(driver);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult<Driver> Put(long id, Driver c)
+        [HttpPatch("{id}")]
+        public ActionResult<Driver> Patch(int id, [FromBody]JsonPatchDocument<Driver> doc)
         {
-            var driver = this.driverRepository.Update(id, c);
+            var driver = this.driverRepository.GetOne(id);
+            this.driverRepository.Patch(id, doc);
             return Ok(driver);
         }
         [HttpDelete("{id}")]

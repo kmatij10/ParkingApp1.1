@@ -1,0 +1,20 @@
+{
+  "name": "parking-app",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm-run-all --parallel api:start web:start",
+    "api:install": "cd Parking.Api && dotnet restore",
+    "api:build": "dotnet build Parking.Api/Parking.Api.csproj",
+    "api:start": "dotnet run -p Parking.Api/Parking.Api.csproj",
+    "web:install": "cd Parking.Web && npm install",
+    "web:build": "npm run build --production",
+    "web:start": "cd Parking.Web && npm start",
+    "postinstall": "npm-run-all --parallel api:install web:install",
+    "make:migration": "dotnet ef --startup-project Parking.Api migrations add $MSG --project Parking.Data",
+    "database:update": "dotnet ef --startup-project Parking.Api database update --project Parking.Data",
+    "database:drop": "dotnet ef --startup-project Parking.Api database drop --project Parking.Data"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

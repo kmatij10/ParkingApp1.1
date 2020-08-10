@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="intro mx-auto text-center">
+        <h2 class="mt-3 font-weight-bold">Auti</h2>
+    </div>
+    <div class="row mt-5">
+        <table class="table">
+            <tr *ngFor="let c of cars">
+                <td>{{ c.id }}</td>
+                <td>{{ c.model }}</td>
+                <td>
+                    <a [routerLink]="['/cars/', c.id]"
+                        routerLinkActive="active"
+                        class="action text-center mt-3 d-block">
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

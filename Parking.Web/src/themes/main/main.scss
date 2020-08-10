@@ -1,0 +1,14 @@
+@import "theme_variables";
+@import "fonts";
+@import "~bootstrap/scss/bootstrap";
+
+#logo {
+  height: 2.5rem;
+}
+
+#logohr {
+  height: 6px;
+  width: 1024px;
+  opacity: 0.8;
+  background: linear-gradient(90deg, #e11e2c 0%, #0071bd 100%);
+}

@@ -1,0 +1,9 @@
+<div class="container" *ngIf="protest">
+    <div class="col-sm-8 mx-auto">
+        <h1>{{ protest.title }}</h1>
+        <img src="{{ protest.image_url }}" class="img-fluid" alt="protest cover image">
+        <p>{{ protest.description }}</p>
+    </div>
+    <button (click)="onDelete(protest.id)">Obriši</button>
+    neki info: <input (keyup.enter)="onEnter(protest.id)" type="text" name="" id="" />
+</div>

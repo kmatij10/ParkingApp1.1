@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Parking.Data.Entities;
-using Parking.Core.Repositories.Cars;
+using Parking.Core.Repositories;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Parking.Api.Controllers
 {
@@ -44,13 +45,15 @@ namespace Parking.Api.Controllers
             car = this.carRepository.Create(car);
             return this.mapper.Map<Car>(car);
         }
-
-        [HttpPut("{id}")]
-        public ActionResult<Car> Put(long id, Car c)
+        
+        [HttpPatch("{id}")]
+        public ActionResult<Car> Patch(int id, [FromBody]JsonPatchDocument<Car> doc)
         {
-            var car = this.carRepository.Update(id, c);
+            var car = this.carRepository.GetOne(id);
+            this.carRepository.Patch(id, doc);
             return Ok(car);
         }
+
         [HttpDelete("{id}")]
         public ActionResult<Car> Delete(long id)
         {

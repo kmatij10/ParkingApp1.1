@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Parking.Api.Extensions;
+using Parking.Api.Middleware;
 using Parking.Data.Database;
 
 namespace Parking.Api
@@ -22,9 +23,11 @@ namespace Parking.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StaticConfig = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        public static IConfiguration StaticConfig { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -36,15 +39,14 @@ namespace Parking.Api
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
+            services.RegisterScopedServices();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             /* database connection, used from appsettings */
-            services.AddDbContext<ParkingContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 //options.UseSqlServer(Configuration["ConnectionStrings:Default"], x => x.MigrationsAssembly("Parking.Data"))
                 options.UseSqlServer(Configuration["ConnectionStrings:Default"])
             );
-
-            services.RegisterScopedServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +62,8 @@ namespace Parking.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

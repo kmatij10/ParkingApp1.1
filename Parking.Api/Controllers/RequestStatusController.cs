@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Parking.Core.Repositories.RequestStatuses;
+using Parking.Core.Repositories;
 using Parking.Data.Entities;
 
 namespace Parking.Api.Controllers
@@ -45,10 +46,11 @@ namespace Parking.Api.Controllers
             return this.mapper.Map<RequestStatus>(requestStatus);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult<RequestStatus> Put(long id, RequestStatus c)
+        [HttpPatch("{id}")]
+        public ActionResult<RequestStatus> Patch(int id, [FromBody]JsonPatchDocument<RequestStatus> doc)
         {
-            var requestStatus = this.requestStatusRepository.Update(id, c);
+            var requestStatus = this.requestStatusRepository.GetOne(id);
+            this.requestStatusRepository.Patch(id, doc);
             return Ok(requestStatus);
         }
         [HttpDelete("{id}")]

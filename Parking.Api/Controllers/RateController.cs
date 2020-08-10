@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Parking.Core.Repositories.Rates;
+using Parking.Core.Repositories;
 using Parking.Data.Entities;
 
 namespace Parking.Api.Controllers
@@ -45,10 +46,11 @@ namespace Parking.Api.Controllers
             return this.mapper.Map<Rate>(rate);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult<Rate> Put(long id, Rate c)
+        [HttpPatch("{id}")]
+        public ActionResult<Rate> Patch(int id, [FromBody]JsonPatchDocument<Rate> doc)
         {
-            var rate = this.rateRepository.Update(id, c);
+            var rate = this.rateRepository.GetOne(id);
+            this.rateRepository.Patch(id, doc);
             return Ok(rate);
         }
         [HttpDelete("{id}")]

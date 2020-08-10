@@ -1,13 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-using Parking.Core.Repositories.Cars;
-using Parking.Core.Repositories.Drivers;
-using Parking.Core.Repositories.Payments;
-using Parking.Core.Repositories.ParkingSpaces;
-using Parking.Core.Repositories.ParkingTypes;
-using Parking.Core.Repositories.PaymentPanels;
-using Parking.Core.Repositories.Rates;
-using Parking.Core.Repositories.RequestStatuses;
-using Parking.Core.Repositories.Parkings;
+using Parking.Api.Services;
+using Parking.Core.Repositories;
 
 namespace Parking.Api.Extensions
 {
@@ -15,6 +8,7 @@ namespace Parking.Api.Extensions
     {
         public static void RegisterScopedServices(this IServiceCollection services)
         {
+            // repositories
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
@@ -24,6 +18,10 @@ namespace Parking.Api.Extensions
             services.AddScoped<IRateRepository, RateRepository>();
             services.AddScoped<IRequestStatusRepository, RequestStatusRepository>();
             services.AddScoped<IParkedRepository, ParkedRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // services
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

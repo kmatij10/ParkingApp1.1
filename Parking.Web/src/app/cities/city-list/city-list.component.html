@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="intro mx-auto text-center">
+        <h2 class="mt-3 font-weight-bold">Dostupni gradovi</h2>
+    </div>
+    <div class="row mt-5">
+        <table class="table">
+            <tr *ngFor="let c of cities">
+                <td>{{ c.id }}</td>
+                <td>{{ c.cityName }}</td>
+                <td>
+                    <a [routerLink]="['/cities/', c.id]"
+                        routerLinkActive="active"
+                        class="action text-center mt-3 d-block">
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

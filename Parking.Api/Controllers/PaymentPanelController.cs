@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Parking.Core.Repositories.PaymentPanels;
+using Parking.Core.Repositories;
 using Parking.Data.Entities;
 
 namespace Parking.Api.Controllers
@@ -45,10 +46,11 @@ namespace Parking.Api.Controllers
             return this.mapper.Map<PaymentPanel>(paymentPanel);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult<PaymentPanel> Put(long id, PaymentPanel c)
+        [HttpPatch("{id}")]
+        public ActionResult<PaymentPanel> Patch(int id, [FromBody]JsonPatchDocument<PaymentPanel> doc)
         {
-            var paymentPanel = this.paymentPanelRepository.Update(id, c);
+            var paymentPanel = this.paymentPanelRepository.GetOne(id);
+            this.paymentPanelRepository.Patch(id, doc);
             return Ok(paymentPanel);
         }
         [HttpDelete("{id}")]
