@@ -11,24 +11,24 @@ namespace Parking.Data.Seed
                 new ParkingSpace
                 {
                     Id = 1,
-                    Lat = 20.3,
-                    Lng = 13.3,
+                    Lat = 50.358398M,
+                    Lng = 5.285080M,
                     ParkingTypeId = 1,
                     RateId = 1
                 },
                 new ParkingSpace
                 {
                     Id = 2,
-                    Lat = 40.3,
-                    Lng = 30.3,
+                    Lat = 45.800440M,
+                    Lng = 15.994100M,
                     ParkingTypeId = 1,
                     RateId = 1
                 },
                 new ParkingSpace
                 {
                     Id = 3,
-                    Lat = -13.3,
-                    Lng = 40.3,
+                    Lat = 45.808190M,
+                    Lng = 15.918490M,
                     ParkingTypeId = 1,
                     RateId = 1
                 }

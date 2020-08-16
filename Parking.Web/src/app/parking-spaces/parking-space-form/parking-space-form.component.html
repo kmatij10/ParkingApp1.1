@@ -1,0 +1,63 @@
+<div class="col-sm-6 mx-auto">
+    <form (ngSubmit)="onSubmit()">
+      <input type="hidden" name="id" [(ngModel)]="parkingSpace.id">
+  
+      <!-- lat -->
+      <div class="form-group">
+        <label for="title">Latitude</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="parkingSpace.lat"
+          class="form-control"
+          id="title"
+          placeholder="Latitude">
+      </div>
+  
+      <!-- lng -->
+      <div class="form-group">
+        <label for="title">Longitude</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="parkingSpace.lng"
+          class="form-control"
+          id="title"
+          placeholder="Longitude">
+      </div>
+  
+  
+      <div class="form-row">
+  
+        <!-- rate -->
+        <div class="col-md-6">
+          <div class="col-auto my-2">
+            <label for="rate">Rate</label>
+            <select
+              class="custom-select mr-sm-2"
+              name="rate"
+              [(ngModel)]="parkingSpace.rateId"
+              id="rate">
+                <option *ngFor="let r of rates" [value]="r.id">{{ r.priceHourly }}</option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- parkingtype -->
+        <div class="col-md-6">
+          <div class="col-auto my-2">
+            <label for="parkingType">Parking Type</label>
+            <select
+              class="custom-select mr-sm-2"
+              name="parkingType"
+              [(ngModel)]="parkingSpace.parkingTypeId"
+              id="parkingType">
+                <option *ngFor="let p of parkingTypes" [value]="p.id">{{ p.type }}</option>
+            </select>
+          </div>
+        </div>
+  
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>

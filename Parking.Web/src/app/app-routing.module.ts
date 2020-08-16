@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProtestListComponent } from './protests/protest-list/protest-list.component';
-import { ProtestDetailComponent } from './protests/protest-detail/protest-detail.component';
-import { CityListComponent } from './cities/city-list/city-list.component';
-import { CityDetailComponent } from './cities/city-detail/city-detail.component';
-import { CarListComponent } from './cars/car-list/car-list.component';
 
 
 const routes: Routes = [
-  { path: '', component: CarListComponent },
-  { path: 'protests', component: ProtestListComponent },
-  { path: 'protests/:id', component: ProtestDetailComponent },
-  { path: 'cities', component: CityListComponent },
-  { path: 'cities/:id', component: CityDetailComponent },
-  { path: 'cars', component: CarListComponent }
+  { path: 'cars', loadChildren: () => import('./cars/car.module').then(m => m.CarsModule) },
+  { path: 'rates', loadChildren: () => import('./rates/rate.module').then(m => m.RatesModule) },
+  { path: 'parkingspaces', loadChildren: () => import('./parking-spaces/parking-space.module').then(m => m.ParkingSpacesModule) },
+  { path: 'parkingtypes', loadChildren: () => import('./parking-types/parking-type.module').then(m => m.ParkingTypesModule) },
+  { path: 'paymentpanels', loadChildren: () => import('./payment-panels/payment-panel.module').then(m => m.PaymentPanelsModule) }
 ];
 
 @NgModule({

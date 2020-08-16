@@ -3,28 +3,30 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProtestListComponent } from './protests/protest-list/protest-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ProtestDetailComponent } from './protests/protest-detail/protest-detail.component';
-import { CityListComponent } from './cities/city-list/city-list.component';
-import { CityDetailComponent } from './cities/city-detail/city-detail.component';
-import { CarListComponent } from './cars/car-list/car-list.component';
+import { CarsModule } from './cars/car.module';
+import { ParkingSpacesModule } from './parking-spaces/parking-space.module';
+import { PaymentPanelsModule } from './payment-panels/payment-panel.module';
+import { RatesModule } from './rates/rate.module';
+import { ParkingTypesModule } from './parking-types/parking-type.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProtestListComponent,
-    ProtestDetailComponent,
-    CityListComponent,
-    CityDetailComponent,
-    CarListComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
+    //BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CarsModule,
+    ParkingSpacesModule,
+    PaymentPanelsModule,
+    RatesModule,
+    ParkingTypesModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

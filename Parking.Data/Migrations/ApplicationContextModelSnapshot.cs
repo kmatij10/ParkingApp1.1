@@ -193,11 +193,11 @@ namespace Parking.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Lat")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Lat")
+                        .HasColumnType("decimal(11, 8)");
 
-                    b.Property<double>("Lng")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Lng")
+                        .HasColumnType("decimal(11, 8)");
 
                     b.Property<long>("ParkingTypeId")
                         .HasColumnType("bigint");
@@ -217,24 +217,24 @@ namespace Parking.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Lat = 20.300000000000001,
-                            Lng = 13.300000000000001,
+                            Lat = 50.358398m,
+                            Lng = 5.285080m,
                             ParkingTypeId = 1L,
                             RateId = 1L
                         },
                         new
                         {
                             Id = 2L,
-                            Lat = 40.299999999999997,
-                            Lng = 30.300000000000001,
+                            Lat = 45.800440m,
+                            Lng = 15.994100m,
                             ParkingTypeId = 1L,
                             RateId = 1L
                         },
                         new
                         {
                             Id = 3L,
-                            Lat = -13.300000000000001,
-                            Lng = 40.299999999999997,
+                            Lat = 45.808190m,
+                            Lng = 15.918490m,
                             ParkingTypeId = 1L,
                             RateId = 1L
                         });

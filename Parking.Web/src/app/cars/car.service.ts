@@ -13,6 +13,7 @@ export class CarService {
   ) { }
 
   getCars(params = {}) {
+    // GET req na localhost:5001/api/cars?search=abc
     return this.http.get<Car[]>(environment.apiUrl + '/cars', { params });
   }
 
