@@ -7,6 +7,7 @@ import { ParkingSpaceFormComponent } from './parking-space-form/parking-space-fo
 const routes: Routes = [
   { path: '', component: ParkingSpaceListComponent },
   { path: 'new', component: ParkingSpaceFormComponent, },
+  { path: 'patch', component: ParkingSpaceFormComponent, },
   { path: ':id', component: ParkingSpaceDetailComponent }
 ];
 

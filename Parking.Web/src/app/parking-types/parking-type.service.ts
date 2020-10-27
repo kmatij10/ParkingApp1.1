@@ -17,7 +17,7 @@ export class ParkingTypeService {
     return this.http.get<ParkingType[]>(environment.apiUrl + '/parkingtypes', { params });
   }
 
-  /*getCity(id) {
-    return this.http.get<City>(environment.apiUrl + '/cities/' + id);
-  }*/
+  getParkingType(id: number) {
+    return this.http.get<ParkingType>(environment.apiUrl + '/parkingtypes/' + id);
+  }
 }

@@ -17,7 +17,7 @@ export class RateService {
     return this.http.get<Rate[]>(environment.apiUrl + '/rates', { params });
   }
 
-  /*getCity(id) {
-    return this.http.get<City>(environment.apiUrl + '/cities/' + id);
-  }*/
+  getRate(id: number) {
+    return this.http.get<Rate>(environment.apiUrl + '/rates/' + id);
+  }
 }

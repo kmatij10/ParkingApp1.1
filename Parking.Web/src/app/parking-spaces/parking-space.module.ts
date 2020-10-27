@@ -10,10 +10,11 @@ import { ParkingSpaceFormComponent } from './parking-space-form/parking-space-fo
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ParkingSpacePatchFormComponent } from './parking-space-patch-form/parking-space-patch-form.component';
 
 
 @NgModule({
-  declarations: [ParkingSpaceListComponent, ParkingSpaceDetailComponent, ParkingSpaceFormComponent],
+  declarations: [ParkingSpaceListComponent, ParkingSpaceDetailComponent, ParkingSpaceFormComponent, ParkingSpacePatchFormComponent],
   imports: [
     CommonModule,
     ParkingSpacesRoutingModule,

@@ -19,6 +19,7 @@ namespace Parking.Api.Extensions
             services.AddScoped<IRequestStatusRepository, RequestStatusRepository>();
             services.AddScoped<IParkedRepository, ParkedRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
 
             // services
             services.AddScoped<IAuthService, AuthService>();

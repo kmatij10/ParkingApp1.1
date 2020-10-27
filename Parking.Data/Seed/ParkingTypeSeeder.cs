@@ -19,12 +19,6 @@ namespace Parking.Data.Seed
                     Id = 2,
                     Type = "regular",
                     Zone = 2
-                },
-                new ParkingType
-                {
-                    Id = 3,
-                    Type = "handicapped",
-                    Zone = 2
                 }
             );
         }

@@ -21,6 +21,7 @@ namespace Parking.Data.Database
         public DbSet<Rate> Rates { get; set; }
         public DbSet<RequestStatus> RequestStatuses { get; set; }
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Availability> Availabilities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,7 @@ namespace Parking.Data.Database
             modelBuilder.SeedPayments();
             modelBuilder.SeedRates();
             modelBuilder.SeedRequestStatuses();
+            modelBuilder.SeedAvailabilities();
         }
     }
 }

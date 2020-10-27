@@ -22,6 +22,26 @@ namespace Parking.Data.Seed
                 {
                     Id = 3,
                     Model = "Renault Clio"
+                },
+                new Car
+                {
+                    Id = 4,
+                    Model = "Renault Megane"
+                },
+                new Car
+                {
+                    Id = 5,
+                    Model = "Fiat Punto"
+                },
+                new Car
+                {
+                    Id = 6,
+                    Model = "Dacia Duster"
+                },
+                new Car
+                {
+                    Id = 7,
+                    Model = "Mazda3"
                 }
             );
         }

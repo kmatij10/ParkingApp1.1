@@ -28,4 +28,22 @@ export class ParkingSpaceService {
   postParkingSpace(parkingSpace: ParkingSpace) {
     return this.http.post<ParkingSpace>(environment.apiUrl + '/parkingspaces', parkingSpace);
   }
+
+  patchParkingSpace(id: number, parkingSpace: ParkingSpace) { 
+    console.log('sending patch request to add an item');
+
+    return this.http.patch(environment.apiUrl + '/parkingspaces/' + id, parkingSpace).subscribe(
+      res => { 
+        console.log('received ok response from patch request');
+      },
+      error => {
+        console.error('There was an error during the request');
+        console.log(error);
+      });
+  }
+
+  updateAvailability(parkingSpace: ParkingSpace) { 
+    return this.http.patch(environment.apiUrl + '/parkingspaces' + parkingSpace.id, parkingSpace)
+  }
+  
 }

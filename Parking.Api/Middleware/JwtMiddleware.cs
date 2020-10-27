@@ -39,7 +39,7 @@ namespace Parking.Api.Middleware
                 await next(context);
             } catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
     }

@@ -1,8 +1,7 @@
 <div *ngIf="parkingSpace">
-    <h1>parking space detail</h1>
-    <p>radi mamu ti</p>
-    <p>{{ parkingSpace.lat }}</p>
-    <p>Tip parkinga: {{ type }} </p>
-    <a href="{{url}}"> Navigiraj </a>
-    <a href="#">Plati parking</a>
+    <h1>Parking space {{parkingSpace.id}}</h1>
+    <p>Parking type: <i>{{ parkingSpace.parkingType.type }}</i> </p>
+    <p>Price hourly: <b>{{ parkingSpace.rate.priceHourly }}HRK</b> </p>
+    <a href="{{url}}"> Navigate </a>
+    <a href="#">Reserve parking space</a>
 </div>
